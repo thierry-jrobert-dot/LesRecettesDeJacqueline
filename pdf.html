@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Recette</title>
+
+<style>
+html, body {
+    background: #f2f2f2 url('fond_quadrille_bleu.png') repeat;
+    background-size: 2000px 2200px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Snell Roundhand", "Brush Script MT", cursive;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: -6px 6px 12px rgba(120,140,180,0.25);
+}
+
+button {
+    padding: 10px 18px;
+    background: #c9d9f2;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    filter: brightness(1.1);
+}
+
+iframe {
+    width: 100%;
+    height: 800px;
+    border: none;
+}
+</style>
+
+<script>
+function getPDF() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("file");
+}
+</script>
+
+</head>
+<body>
+
+<div class="container">
+    <button onclick="window.location.href='index.html'">Retour au cahier</button>
+    <iframe src="" id="pdf-frame"></iframe>
+</div>
+
+<script>
+    // Récupère le nom du fichier PDF dans l’URL
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("file");
+
+    // Sécurise et affiche le PDF
+    if (file) {
+        document.getElementById("pdf-frame").src = file;
+    } else {
+        document.getElementById("pdf-frame").outerHTML =
+            "<p style='font-size:1.6rem; color:#333;'>Aucun fichier PDF n’a été spécifié.</p>";
+    }
+</script>
+
+</body>
+</html>

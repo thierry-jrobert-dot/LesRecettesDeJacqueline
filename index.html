@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#c9d9f2">
+<meta charset="UTF-8">
+<title>Les recettes de Jacqueline</title>
+
+<style>
+html, body {
+    background: #f2f2f2 url('fond_quadrille_bleu.png') repeat;
+    background-size: 2000px 2200px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Snell Roundhand", "Brush Script MT", cursive;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background: rgba(230,240,255,0.8);
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.15);
+    border-right: 2px solid rgba(150,170,200,0.3);
+    z-index: 150;
+}
+
+.sidebar h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #2a2a2a;
+}
+
+.sidebar a {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    color: #2a2a2a;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.sidebar a:hover {
+    opacity: 0.6;
+}
+
+.container {
+    margin-left: 240px;
+    padding: 20px;
+    max-width: 900px;
+}
+
+#accueil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(240,245,255,0.9);
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;
+    text-align: center;
+}
+
+#accueil h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+#accueil p {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+#accueil button {
+    padding: 14px 28px;
+    font-size: 1.6rem;
+    border-radius: 14px;
+    border: none;
+    background: #c9d9f2;
+    cursor: pointer;
+    box-shadow: -4px 4px 10px rgba(120,140,180,0.25);
+}
+
+#accueil button:hover {
+    filter: brightness(1.1);
+}
+
+#apropos {
+    margin-top: 60px;
+    font-size: 1.6rem;
+    max-width: 600px;
+    line-height: 1.6;
+    color: #333;
+    opacity: 0.85;
+}
+
+.category-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #2a2a2a;
+}
+
+.category-card {
+    background-color: #c9d9f2;
+    border-radius: 20px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    box-shadow: -6px 6px 10px rgba(120, 140, 180, 0.25);
+}
+
+.category-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #e6eefb;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: #4a5a7a;
+}
+
+.recipe-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.recipe-link:hover {
+    transform: translateX(6px);
+    filter: brightness(1.15);
+}
+
+.recipe-link::before {
+    content: "➜";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    margin-right: 12px;
+    box-shadow:
+        inset -3px -3px 6px rgba(255,255,255,0.6),
+        inset 3px 3px 6px rgba(0,0,0,0.15),
+        -4px 4px 8px rgba(0,0,0,0.25);
+}
+
+#aperitif .recipe-link::before {
+    background: linear-gradient(145deg, #f9c3d3, #e89bb0);
+}
+
+#entrees .recipe-link::before {
+    background: linear-gradient(145deg, #aee8d2, #7fc8a9);
+}
+
+#viandes .recipe-link::before {
+    background: linear-gradient(145deg, #f0d3a2, #d6a86b);
+}
+
+#desserts .recipe-link::before {
+    background: linear-gradient(145deg, #c7d0ff, #9aa7ff);
+}
+</style>
+
+<script>
+function openPDF(file) {
+    window.location.href = "pdf.html?file=" + encodeURIComponent(file);
+}
+
+function searchRecipes() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let recipes = document.querySelectorAll(".recipe-link");
+
+    recipes.forEach(r => {
+        let text = r.innerText.toLowerCase();
+        r.style.display = text.includes(input) ? "flex" : "none";
+    });
+}
+
+function enterApp() {
+    document.getElementById("accueil").style.display = "none";
+}
+</script>
+</head>
+<body>
+
+<div id="accueil">
+    <h1>Le grimoire des recettes de Jacqueline</h1>
+    <p>Bienvenue dans le cahier de cuisine familial</p>
+    <button onclick="enterApp()">Entrer dans le cahier</button>
+
+    <div id="apropos">
+        <strong>À propos</strong><br><br>
+        Ce cahier de cuisine rassemble les recettes de Jacqueline,<br>
+        soigneusement écrites, transmises et partagées en famille.<br>
+        Un héritage gourmand, préservé avec tendresse.
+    </div>
+</div>
+
+<div class="sidebar">
+    <h2>Menu</h2>
+    <a href="#aperitif">Apéritifs</a>
+    <a href="#entrees">Entrées</a>
+    <a href="#viandes">Viandes</a>
+    <a href="#desserts">Desserts</a>
+</div>
+
+<div class="container">
+
+<!-- APERITIFS -->
+<div id="aperitif">
+    <div class="category-card">
+        <div class="category-icon">🥂</div>
+        <div class="category-title">Apéritifs</div>
+    </div>
+
+    <a class="recipe-link" onclick="openPDF('recettes/aperitif/soupe_de_champagne.pdf')">
+        Soupe de champagne
+    </a>
+</div>
+
+<!-- ENTREES -->
+<div id="entrees">
+    <div class="category-card">
+        <div class="category-icon">🥗</div>
+        <div class="category-title">Entrées</div>
+    </div>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/chou_fleur_en_pate_filo.pdf')">
+        Chou-fleur en pâte filo
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/clafoutis_aux_courgettes.pdf')">
+        Clafoutis aux courgettes
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/pate_lorrain_de_laurent_mariotte.pdf')">
+        Pâté lorrain de Laurent Mariotte
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/quiche_sans_pate.pdf')">
+        Quiche sans pâte
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/tatin_d_echalottes.pdf')">
+        Tatin d’échalotes
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/tourte-au-fromage.pdf')">
+        Tourte au fromage
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/tourte_aux_pommes_de_terre_jambon_oignons_et_cancoillotte.pdf')">
+        Tourte aux pommes de terre jambon oignons et cancoillotte
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/tourte_poire_et_reblochon-.pdf')">
+        Tourte poire et reblochon
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/veloute_de_courgettes.pdf')">
+        Velouté de courgettes
+    </a>
+</div>
+
+<!-- VIANDES -->
+<div id="viandes">
+    <div class="category-card">
+        <div class="category-icon">🍖</div>
+        <div class="category-title">Viandes</div>
+    </div>
+</div>
+
+<!-- DESSERTS -->
+<div id="desserts">
+    <div class="category-card">
+        <div class="category-icon">🍰</div>
+        <div class="category-title">Desserts</div>
+    </div>
+
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/baba_au_rhum.pdf')">Baba au rhum</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/banana_cake_de_cyril_lignac.pdf')">Banana cake de Cyril Lignac</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/bananes_flambees.pdf')">Bananes flambées</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/bugnes_beignets.pdf')">Bugnes (beignets)</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis.pdf')">Clafoutis</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis_aux_abricots.pdf')">Clafoutis aux abricots</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis_aux_peches_ou_abricots_en_boite.pdf')">
+        Clafoutis aux pêches ou abricots en boîte
+    </a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis_aux_pommes.pdf')">Clafoutis aux pommes</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/crepe_party.pdf')">Crêpe party</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/far_aux_mirabelles.pdf')">Far aux mirabelles</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/far_breton_de_genevieve.pdf')">Far breton de Geneviève</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/flan_au_lait_concentre.pdf')">Flan au lait concentré</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/gateau_au_lait_concentre.pdf')">Gâteau au lait concentré</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/gateau_aux_pommes.pdf')">Gâteau aux pommes</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/gaufres_mini_salees_tomates_sechees_lardons_et_parmesan.pdf')">
+        Gaufres (mini) salées tomates séchées lardons et parmesan
+    </a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/genoise.pdf')">Génoise</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/genoise_2.pdf')">Génoise (2)</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/grinkles_au_chocolat.pdf')">Grinkles au chocolat</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/mousse_legere_au_citron.pdf')">Mousse légère au citron</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/riz_au_lait_et_aux_fruits.pdf')">Riz au lait et aux fruits</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/roule_meringue_aux_fraises.pdf')">Roulé meringué aux fraises</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/tarte_aux_biscuits_oreo_et_framboises.pdf')">
+        Tarte aux biscuits Oréo et framboises
+    </a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/tarte_noix_de_coco_ananas.pdf')">Tarte noix de coco ananas</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/truffes_au_chocolat.pdf')">Truffes au chocolat</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/tuiles_aux_amandes.pdf')">Tuiles aux amandes</a>
+</div>
+
+</div>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .catch(err => console.log("SW error", err));
+}
+</script>
+
+</body>
+</html>

@@ -7,8 +7,6 @@
 <title>Les recettes de Jacqueline</title>
 
 <style>
-
-/* --- Fond quadrillé bleu 2000x2200 --- */
 html, body {
     background: #f2f2f2 url('fond_quadrille_bleu.png') repeat;
     background-size: 2000px 2200px;
@@ -18,7 +16,6 @@ html, body {
     font-family: "Snell Roundhand", "Brush Script MT", cursive;
 }
 
-/* --- Menu latéral --- */
 .sidebar {
     position: fixed;
     left: 0;
@@ -52,14 +49,12 @@ html, body {
     opacity: 0.6;
 }
 
-/* --- Conteneur principal --- */
 .container {
     margin-left: 240px;
     padding: 20px;
     max-width: 900px;
 }
 
-/* --- Page d'accueil --- */
 #accueil {
     position: fixed;
     top: 0;
@@ -100,7 +95,6 @@ html, body {
     filter: brightness(1.1);
 }
 
-/* --- Rubrique À propos --- */
 #apropos {
     margin-top: 60px;
     font-size: 1.6rem;
@@ -110,28 +104,12 @@ html, body {
     opacity: 0.85;
 }
 
-/* --- Barre de recherche --- */
-.search-box {
-    margin-bottom: 25px;
-}
-
-.search-box input {
-    width: 100%;
-    padding: 12px 18px;
-    font-size: 1.6rem;
-    border-radius: 12px;
-    border: 2px solid #c9d9f2;
-    background: #ffffffaa;
-}
-
-/* --- Titres des catégories --- */
 .category-title {
     font-size: 2.2rem;
     font-weight: bold;
     color: #2a2a2a;
 }
 
-/* --- Cartes des catégories --- */
 .category-card {
     background-color: #c9d9f2;
     border-radius: 20px;
@@ -142,7 +120,6 @@ html, body {
     box-shadow: -6px 6px 10px rgba(120, 140, 180, 0.25);
 }
 
-/* --- Icônes rondes pastel --- */
 .category-icon {
     width: 48px;
     height: 48px;
@@ -156,7 +133,6 @@ html, body {
     color: #4a5a7a;
 }
 
-/* --- Liens des recettes --- */
 .recipe-link {
     text-decoration: none;
     color: #333;
@@ -168,13 +144,11 @@ html, body {
     transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-/* --- Animation douce --- */
 .recipe-link:hover {
     transform: translateX(6px);
     filter: brightness(1.15);
 }
 
-/* --- Flèche 3D ronde --- */
 .recipe-link::before {
     content: "➜";
     display: inline-flex;
@@ -193,7 +167,6 @@ html, body {
         -4px 4px 8px rgba(0,0,0,0.25);
 }
 
-/* --- Couleurs pastel par catégorie --- */
 #aperitif .recipe-link::before {
     background: linear-gradient(145deg, #f9c3d3, #e89bb0);
 }
@@ -209,7 +182,6 @@ html, body {
 #desserts .recipe-link::before {
     background: linear-gradient(145deg, #c7d0ff, #9aa7ff);
 }
-
 </style>
 
 <script>
@@ -217,7 +189,6 @@ function openPDF(file) {
     window.location.href = "pdf.html?file=" + encodeURIComponent(file);
 }
 
-/* --- Recherche instantanée --- */
 function searchRecipes() {
     let input = document.getElementById("search").value.toLowerCase();
     let recipes = document.querySelectorAll(".recipe-link");
@@ -228,16 +199,13 @@ function searchRecipes() {
     });
 }
 
-/* --- Page d'accueil --- */
 function enterApp() {
     document.getElementById("accueil").style.display = "none";
 }
 </script>
-
 </head>
 <body>
 
-<!-- Page d'accueil -->
 <div id="accueil">
     <h1>Le grimoire des recettes de Jacqueline</h1>
     <p>Bienvenue dans le cahier de cuisine familial</p>
@@ -251,7 +219,6 @@ function enterApp() {
     </div>
 </div>
 
-<!-- MENU LATÉRAL -->
 <div class="sidebar">
     <h2>Menu</h2>
     <a href="#aperitif">Apéritifs</a>
@@ -261,112 +228,111 @@ function enterApp() {
 </div>
 
 <div class="container">
-    <!-- Apéritifs -->
-    <div id="aperitif">
-        <div class="category-card">
-            <div class="category-icon">🥂</div>
-            <div class="category-title">Apéritifs</div>
-        </div>
 
-        <a class="recipe-link" onclick="openPDF('recettes/aperitif/soupe_de_champagne.pdf')">
-            Soupe de champagne
-        </a>
+<!-- APERITIFS -->
+<div id="aperitif">
+    <div class="category-card">
+        <div class="category-icon">🥂</div>
+        <div class="category-title">Apéritifs</div>
     </div>
 
-    <!-- Entrées -->
-    <div id="entrees">
-        <div class="category-card">
-            <div class="category-icon">🥗</div>
-            <div class="category-title">Entrées</div>
-        </div>
+    <a class="recipe-link" onclick="openPDF('recettes/aperitif/soupe_de_champagne.pdf')">
+        Soupe de champagne
+    </a>
+</div>
 
-        <a class="recipe-link" onclick="openPDF('recettes/entrees/chou_fleur_en_pâte_filo.pdf')">
-            Chou-fleur en pâte filo
-        </a>
-
-        <a class="recipe-link" onclick="openPDF('recettes/entrees/clafoutis_aux_courgettes.pdf')">
-            Clafoutis aux courgettes
-        </a>
-
-        <a class="recipe-link" onclick="openPDF('recettes/entrees/pâté_lorrain_de_laurent_mariot.pdf')">
-            Pâté lorrain de Laurent Mariotte
-        </a>
-
-        <a class="recipe-link" onclick="openPDF('recettes/entrees/quiche_sans_pâte.pdf')">
-            Quiche sans pâte
-        </a>
-
-        <a class="recipe-link" onclick="openPDF('recettes/entrees/tatin_d_échalottes.pdf')">
-            Tatin d’échalotes
-        </a>
-
-        <a class="recipe-link" onclick="openPDF('recettes/entrees/tourte-au-fromage.pdf')">
-            Tourte au fromage
-        </a>
-
-        <a class="recipe-link" onclick="openPDF('recettes/entrees/tourte_aux_pommes_de_terre_.pdf')">
-            Tourte aux pommes de terre jambon oignons et cancoillotte
-        </a>
-
-        <a class="recipe-link" onclick="openPDF('recettes/entrees/tourte_poire_et_reblochon-.pdf')">
-            Tourte poire et reblochon
-        </a>
-
-        <a class="recipe-link" onclick="openPDF('recettes/entrees/velouté_de_courgettes.pdf')">
-            Velouté de courgettes
-        </a>
+<!-- ENTREES -->
+<div id="entrees">
+    <div class="category-card">
+        <div class="category-icon">🥗</div>
+        <div class="category-title">Entrées</div>
     </div>
 
-    <!-- Viandes -->
-    <div id="viandes">
-        <div class="category-card">
-            <div class="category-icon">🍖</div>
-            <div class="category-title">Viandes</div>
-        </div>
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/chou_fleur_en_pâte_filo.pdf')">
+        Chou-fleur en pâte filo
+    </a>
 
-        <!-- Tu pourras ajouter tes PDF ici -->
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/clafoutis_aux_courgettes.pdf')">
+        Clafoutis aux courgettes
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/pâté_lorrain_de_laurent_mariot.pdf')">
+        Pâté lorrain de Laurent Mariotte
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/quiche_sans_pâte.pdf')">
+        Quiche sans pâte
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/tatin_d_échalottes.pdf')">
+        Tatin d’échalotes
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/tourte-au-fromage.pdf')">
+        Tourte au fromage
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/tourte_aux_pommes_de_terre_.pdf')">
+        Tourte aux pommes de terre jambon oignons et cancoillotte
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/tourte_poire_et_reblochon-.pdf')">
+        Tourte poire et reblochon
+    </a>
+
+    <a class="recipe-link" onclick="openPDF('recettes/entrees/Velouté_de_courgettes.pdf')">
+        Velouté de courgettes
+    </a>
+</div>
+
+<!-- VIANDES -->
+<div id="viandes">
+    <div class="category-card">
+        <div class="category-icon">🍖</div>
+        <div class="category-title">Viandes</div>
+    </div>
+</div>
+
+<!-- DESSERTS -->
+<div id="desserts">
+    <div class="category-card">
+        <div class="category-icon">🍰</div>
+        <div class="category-title">Desserts</div>
     </div>
 
-    <!-- Desserts -->
-    <div id="desserts">
-        <div class="category-card">
-            <div class="category-icon">🍰</div>
-            <div class="category-title">Desserts</div>
-        </div>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/baba_au_rhum.pdf')">Baba au rhum</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/banana_cake_de_cyril_lignac.pdf')">Banana cake de Cyril Lignac</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/bananes_flambées.pdf')">Bananes flambées</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/bugnes_(beignets).pdf')">Bugnes (beignets)</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis.pdf')">Clafoutis</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis_aux_abricots.pdf')">Clafoutis aux abricots</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis_aux_pêches_ou_abricots_en_boîte.pdf')">
+        Clafoutis aux pêches ou abricots en boîte
+    </a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis_aux_pommes.pdf')">Clafoutis aux pommes</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/crêpe_party.pdf')">Crêpe party</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/far_aux_mirabelles.pdf')">Far aux mirabelles</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/far_breton_de_geneviève.pdf')">Far breton de Geneviève</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/flan_au_lait_concentré.pdf')">Flan au lait concentré</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/gaufres_(mini)_salées_tomates_séchées_lardons_et_Parmesan.pdf')">
+        Gaufres (mini) salées tomates séchées lardons et parmesan
+    </a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/gâteau_au_lait_concentré.pdf')">Gâteau au lait concentré</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/gâteau_aux_pommes.pdf')">Gâteau aux pommes</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/génoise.pdf')">Génoise</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/génoise_(2).pdf')">Génoise (2)</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/grinkles_au_chocolat.pdf')">Grinkles au chocolat</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/mousse_légère_au_citron.pdf')">Mousse légère au citron</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/riz_au_lait_et_aux_fruits.pdf')">Riz au lait et aux fruits</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/roulé_meringue_aux_fraises.pdf')">Roulé meringué aux fraises</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/tarte_aux_biscuits_oréo_et_framboises.pdf')">
+        Tarte aux biscuits Oréo et framboises
+    </a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/tarte_noix_de_coco_ananas.pdf')">Tarte noix de coco ananas</a>
+    <a class="recipe-link" onclick="openPDF('recettes/desserts/tuiles_aux_amandes.pdf')">Tuiles aux amandes</a>
+</div>
 
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/baba_au_rhum.pdf')">Baba au rhum</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/banana_cake_de_cyril_lignac.pdf')">Banana cake de Cyril Lignac</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/bananes_flambées.pdf')">Bananes flambées</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/bugnes_(beignets).pdf')">Bugnes (beignets)</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis.pdf')">Clafoutis</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis_aux_abricots.pdf')">Clafoutis aux abricots</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis_aux_pêches_ou_abricots_en_boîte.pdf')">
-            Clafoutis aux pêches ou abricots en boîte
-        </a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/clafoutis_aux_pommes.pdf')">Clafoutis aux pommes</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/crêpe_party.pdf')">Crêpe party</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/far_aux_mirabelles.pdf')">Far aux mirabelles</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/far_breton_de_geneviève.pdf')">Far breton de Geneviève</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/flan_au_lait_concentré.pdf')">Flan au lait concentré</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/gaufres_(mini)_salées_tomates_séchées_lardons_et_Parmesan.pdf')">
-            Gaufres (mini) salées tomates séchées lardons et parmesan
-        </a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/gâteau_au_lait_concentré.pdf')">Gâteau au lait concentré</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/gâteau_aux_pommes.pdf')">Gâteau aux pommes</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/génoise.pdf')">Génoise</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/génoise_(2).pdf')">Génoise (2)</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/grinkles_au_chocolat.pdf')">Grinkles au chocolat</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/mousse_légère_au_citron.pdf')">Mousse légère au citron</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/riz_au_lait_et_aux_fruits.pdf')">Riz au lait et aux fruits</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/roulé_meringue_aux_fraises.pdf')">Roulé meringué aux fraises</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/tarte_aux_biscuits_oréo_et_framboises.pdf')">
-            Tarte aux biscuits Oréo et framboises
-        </a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/tarte_noix_de_coco_ananas.pdf')">Tarte noix de coco ananas</a>
-        <a class="recipe-link" onclick="openPDF('recettes/desserts/tuiles_aux_amandes.pdf')">Tuiles aux amandes</a>
-    </div>
-
-</div> <!-- fin du container -->
+</div>
 
 <script>
 if ("serviceWorker" in navigator) {
